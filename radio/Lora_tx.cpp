@@ -150,7 +150,7 @@ int main(int argc, char **argv) {
 	puts("SetRegulatorMode done");
 	Radio.SetLNAGainSetting(SX128x::LNA_HIGH_SENSITIVITY_MODE);
 	puts("SetLNAGainSetting done");
-	Radio.SetTxParams(13, SX128x::RADIO_RAMP_20_US);
+	Radio.SetTxParams(0, SX128x::RADIO_RAMP_20_US);
 	puts("SetTxParams done");
 
 	Radio.SetBufferBaseAddresses(0x00, 0x00);
