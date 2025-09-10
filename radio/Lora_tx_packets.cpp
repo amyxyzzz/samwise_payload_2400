@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
 	}
 
 // Pins based on Hunter's hardware configuration (busy, nrst, nss, dio1, dio2, dio3, tx_en, rx_en)
-	SX128x_Linux Radio("/dev/spidev0.0", 0, {26, 22, 5, 19, -1, -1, 23, 24});
+	SX128x_Linux Radio("/dev/spidev0.0", 0, {26, 22, 5, 19, -1, -1, 23, 24, 25});
 
 // Pins based on Jake's RX hardware configuration (busy, nrst, nss, dio1, dio2, dio3, tx_en, rx_en)
 	//SX128x_Linux Radio("/dev/spidev0.0", 0, {12, 2, 6, 19, -1, -1, -1, 24});
@@ -128,7 +128,7 @@ int main(int argc, char **argv) {
         char buffer[PACKET_SIZE];
         file.seekg(packetnum*PACKET_SIZE, std::ios::beg);
         file.read(buffer, PACKET_SIZE);
-        Radio.SendPayload((uint8_t*)(&buffer[0]), PACKET_SIZE, {SX128x::RADIO_TICK_SIZE_1000_US, 1000});
+        Radio.SendPayload(buffer, PACKET_SIZE, {SX128x::RADIO_TICK_SIZE_1000_US, 1000});
         printf("Sent packet %d with size %d\n", packetnum, PACKET_SIZE);
         usleep((pkt_ToA+20)*1000);
     }
